@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div class="container">
+  <div
+    class="d-flex justify-content-center mt-5"
+    *ngIf="!productos || beingDeleted"
+  >
+    <div class="spinner-border" style="width: 5rem; height: 5rem" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="productos">
+    <div class="button-container">
+      <button
+        class="btn btn-dark my-5"
+        style="margin-left: auto"
+        (click)="createProduct()"
+      >
+        + Agregar Producto
+      </button>
+    </div>
+
+    <table class="table">
+      <thead style="background-color: #424242 !important; color: #ffffff">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Tools</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productos">
+          <td>{{ p._id }}</td>
+          <td>{{ p.name }}</td>
+          <td>${{ p.price }}</td>
+          <td>
+            <button
+              class="btn btn-light mr-1"
+              [routerLink]="['/producto-edit', p._id]"
+            >
+              <i class="fa fa-pen"></i>
+            </button>
+            <button
+              class="btn btn-danger"
+              style="margin-left: 0.25rem"
+              (click)="deleteProduct(p._id)"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>

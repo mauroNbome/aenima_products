@@ -1,0 +1,45 @@
+.button-container {
+  .btn {
+    background-color: #424242 !important;
+    padding: 1.2rem 2.4rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 0;
+  }
+}
+
+.product-photo {
+  width: 100%;
+  margin-bottom: 4rem;
+  img {
+    width: 85%;
+    height: 85%;
+  }
+}
+.product-name {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1a1a1a;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-bottom: 2rem;
+  border-bottom: 1.5px solid #e3e3e3;
+  padding: 0 0.75rem 2rem 0.75rem;
+  color: #55595c;
+}
+
+.product-price {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.6rem;
+  color: #55595c;
+  border-bottom: 1.5px solid #e3e3e3;
+}
+
+.product-description {
+  color: #55595c;
+  padding: 1.75rem 1.25rem;
+  font-size: 1.6rem;
+}

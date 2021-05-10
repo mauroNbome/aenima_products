@@ -1,0 +1,13 @@
+<div class="card-producto" [routerLink]="['/producto-view', producto._id]">
+  <div class="card-img">
+    <img [src]="getUrl(producto)" />
+  </div>
+
+  <div class="card-body">
+    <div class="card-title">
+      {{ producto.name }}
+    </div>
+
+    <div class="card-price">${{ producto.price }}</div>
+  </div>
+</div>

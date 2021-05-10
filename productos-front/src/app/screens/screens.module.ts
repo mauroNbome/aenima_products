@@ -1,15 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { ProductosComponent } from './productos/productos.component';
 import { SharedModule } from '../shared/shared.module';
-import { ProductoComponent } from './producto/producto.component';
+import { ProductoCardComponent } from '../components/producto-card/producto-card.component';
+import { ProductoViewComponent } from './producto-view/producto-view.component';
+import { RouterModule } from '@angular/router';
+import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
+import { ProductoEditComponent } from './producto-edit/producto-edit.component';
 
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, ProductosComponent, ProductoComponent],
-  imports: [CommonModule, SharedModule, ReactiveFormsModule],
-  exports: [LoginComponent, HomeComponent, ProductosComponent],
+  declarations: [
+    ProductosComponent,
+    ProductoCardComponent,
+    ProductoViewComponent,
+    GestionProductosComponent,
+    ProductoEditComponent,
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+  ],
+  exports: [ProductosComponent],
 })
 export class ScreensModule {}

@@ -1,0 +1,15 @@
+.button-container {
+  display: flex;
+  .btn {
+    background-color: #424242 !important;
+    padding: 1.2rem 2.4rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 0;
+  }
+
+  .btn-right {
+    align-items: flex-end;
+  }
+}

@@ -1,59 +1,107 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 import { ProductI } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductosService {
-  productos: ProductI[] = [
-    {
-      _id: '1',
-      name: 'Airpods Wireless Bluetooth Headphones',
-      image: '../../assets/images/airpods.jpg',
-      description:
-        'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-      price: 89.99,
-    },
-    {
-      _id: '2',
-      name: 'iPhone 11 Pro 256GB Memory',
-      image: '../../assets/images/phone.jpg',
-      description:
-        'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
-      price: 599.99,
-    },
-    {
-      _id: '3',
-      name: 'Cannon EOS 80D DSLR Camera',
-      image: '../../assets/images/camera.jpg',
-      description:
-        'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-      price: 929.99,
-    },
-    {
-      _id: '4',
-      name: 'Sony Playstation 4 Pro White Version',
-      image: '../../assets/images/playstation.jpg',
-      description:
-        'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
-      price: 399.99,
-    },
-    {
-      _id: '5',
-      name: 'Logitech G-Series Gaming Mouse',
-      image: '../../assets/images/mouse.jpg',
-      description:
-        'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-      price: 49.99,
-    },
-    {
-      _id: '6',
-      name: 'Amazon Echo Dot 3rd Generation',
-      image: '../../assets/images/alexa.jpg',
-      description:
-        'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-      price: 29.99,
-    },
-  ];
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  getProductos(): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .get<any>(`${environment.urlBase}api/products`, httpOptions)
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+
+  getProductoById(id): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .get<any>(`${environment.urlBase}api/products/${id}`, httpOptions)
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+
+  updateProduct(id, product: ProductI): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .put<any>(
+        `${environment.urlBase}api/products/${id}`,
+        product,
+        httpOptions
+      )
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+
+  deleteProduct(id): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .delete<any>(`${environment.urlBase}api/products/${id}`, httpOptions)
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+
+  createProduct(): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .post<any>(`${environment.urlBase}api/products/`, httpOptions)
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+
+  uploadFile(file): any {
+    const httpOptions = {
+      headers: new HttpHeaders({}),
+    };
+    return this.http
+      .post<any>(`${environment.urlBase}api/upload/`, file, {
+        responseType: 'text' as 'json',
+      })
+      .pipe(
+        map((resp) => {
+          console.log(resp);
+          return resp;
+        })
+      );
+  }
 }

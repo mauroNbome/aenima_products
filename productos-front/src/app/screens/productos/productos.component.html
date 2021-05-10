@@ -1,14 +1,50 @@
 <app-header></app-header>
 
-<div class="main-box mt-5">
+<div class="mt-5 container">
   <div class="title">Últimos Productos</div>
 
-  <div class="row g-0">
+  <div class="search-wrapper">
+    <div class="inner-wrap">
+      <input
+        type="text"
+        class="form-text"
+        (keyup.enter)="filterProducts()"
+        [(ngModel)]="term"
+      />
+      <div class="search-button" (click)="filterProducts()">Buscar</div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button
+      class="btn btn-dark my-5"
+      *ngIf="searching"
+      (click)="resetProductos()"
+    >
+      Go back
+    </button>
+  </div>
+
+  <div class="d-flex justify-content-center" *ngIf="!currentProducts">
+    <div class="spinner-border" style="width: 5rem; height: 5rem" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="row g-0" *ngIf="currentProducts">
     <div
       class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-3 d-flex justify-content-center"
-      *ngFor="let producto of productos"
+      *ngFor="let producto of currentProducts"
     >
-      <app-producto [producto]="producto"></app-producto>
+      <app-producto-card [producto]="producto"></app-producto-card>
     </div>
+  </div>
+  <div
+    class="alert alert-light"
+    role="alert"
+    *ngIf="searchNotFound"
+    style="background-color: #d19f9c; color: #fff"
+  >
+    No se han encontrado productos.
   </div>
 </div>
